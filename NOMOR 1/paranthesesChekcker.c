@@ -1,6 +1,6 @@
 #ifndef   tabel_c
 #define   tabel_c
-#include "tabel.h"
+#include "paranthesesChekcker.h"
 /* Deskripsi : header file modul tabel*/
 /* NIM/Nama :  24060124120037/Muhammad Fahri*/
 /* Tanggal : 11 September 2025*/
@@ -11,12 +11,12 @@
 	{I.S.: -}
 	{F.S.: size=0, setiap elemen wadah dengan 1 karakter spasi, spasi dianggap karakter kosong}
 	{Proses: menginisialisasi T} */
-void createTable(Tabel *T){
+void createStack(Stack *T){
     //kamus lokal 
     int i;
 
     //algoritma 
-    T->size = 0;
+    
     for (i = 1; i < 11; i++){
         T->wadah[i] = ' ';
     }
@@ -25,20 +25,20 @@ void createTable(Tabel *T){
 /*SELEKTOR/
 /* function getSize( T: Tabel) -> integer
 	{mengembalikan banyak elemen pengisi T } */
-int getSize(Tabel T){
-   return T.size;
+int getSize(Stack T){
+   return T.top;
 }
 
 /*PREDIKAT*/
 /* function isEmptyTable( T: Tabel) -> boolean
 	{mengembalikan True jika T kosong } */
-boolean isEmptyTable(Tabel T){
+boolean isEmptyStack(Stack T){
     return getSize(T)==0;
 }
 
 /* function isFullTable( T: Tabel) -> boolean
 	{mengembalikan True jika T penuh } */
-boolean isFullTable(Tabel T){
+boolean isFullStack(Stack T){
     return getSize(T)==10;
 }
 
@@ -47,7 +47,7 @@ boolean isFullTable(Tabel T){
 	{I.S.: T terdefinisi, x terdefinisi }
 	{F.S.: pos berisi posisi ketemu di T.wadah, atau -999 jika tidak ketemu }
 	{Proses: mencari elemen bernilai x dalam T.wadah} */
-void searchX(Tabel T, char x, int *pos){
+void searchX(Stack T, char x, int *pos){
     //kamus lokal
     int i;
 

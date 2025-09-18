@@ -1,137 +1,68 @@
 #define tabel_H 
-/* Program   : */
-/* Deskripsi : */
-/* NIM/Nama  : */
-/* Tanggal   : */
-/***********************************/
 #include <stdio.h>
 #include "boolean.h"
 
-/* type Tabel = < wadah : array[1..10] of character,
-                   size : integer > */
-/* Tabel berisi elemen karakter berupa hurf abjad kapital. */
-/* Asumsi: indeks 0 tidak digunakan */
-typedef	struct { char wadah[11];
-                 int size; } Tabel;
+/* type Stack = < wadah : array[1..10] of character,
+                  top : integer >
+   Stack berisi elemen karakter berupa huruf abjad kapital.
+   Asumsi: indeks 0 tidak digunakan */
+typedef struct {
+    char wadah[10];
+    int top;
+} Stack;
 
-/************************KONSTRUKTOR*************************/				 
-/* procedure createTable( output T: Tabel)
-	{I.S.: -}
-	{F.S.: size=0, setiap elemen wadah dengan 1 karakter spasi, spasi dianggap karakter kosong}
-	{Proses: menginisialisasi T} */
-void createTable(Tabel *T);
+// *********************** KONSTRUKTOR ***********************
+/* procedure createStack (output T:Stack) 
+   {I.S.: -}
+   {F.S.: stack kosong, top = 0} */
+void createStack(Stack *T);
 
-/************************SELEKTOR*************************/
-/* function getSize( T: Tabel) -> integer
-	{mengembalikan banyak elemen pengisi T } */
-int getSize(Tabel T);
+// *********************** SELEKTOR ***********************
+/* function getSize (T:Stack) -> integer 
+   {mengembalikan banyak elemen dalam stack} */
+int getSize(Stack T);
 
-/*************************PREDIKAT*************************/
-/* function isEmptyTable( T: Tabel) -> boolean
-	{mengembalikan True jika T kosong } */
-boolean isEmptyTable(Tabel T);
+// *********************** PREDIKAT ***********************
+/* function isEmptyStack (T:Stack) -> boolean 
+   {mengembalikan true jika stack kosong} */
+boolean isEmptyStack(Stack T);
 
-/* function isFullTable( T: Tabel) -> boolean
-	{mengembalikan True jika T penuh } */
-boolean isFullTable(Tabel T);
+/* function isFullStack (T:Stack) -> boolean 
+   {mengembalikan true jika stack penuh} */
+boolean isFullStack(Stack T);
 
-/*************************OPERASI PENCARIAN*************************/
-/*  procedure searchX (input T:Tabel, input X:character, output pos:integer )
-	{I.S.: T terdefinisi, x terdefinisi }
-	{F.S.: pos berisi posisi ketemu di T.wadah, atau -999 jika tidak ketemu }
-	{Proses: mencari elemen bernilai x dalam T.wadah} */
-void searchX(Tabel T, char x, int *pos);
+// *********************** OPERASI PENCARIAN ***********************
+/* procedure searchX (input T:Stack, input x:char, output pos:integer) 
+   {I.S.: T terdefinisi, x terdefinisi}
+   {F.S.: pos berisi posisi x atau -999 jika tidak ketemu} */
+void searchX(Stack T, char x, int *pos);
 
-/* function countX (T:Tabel, x:character) -> integer
-	{mengembalikan banyaknya elemen bernilai X dalam T.wadah} */
-int countX(Tabel T, char x);
+/* function countX (T:Stack, x:char) -> integer 
+   {mengembalikan banyaknya elemen bernilai x} */
+int countX(Stack T, char x);
 
-/* function countVocal(T: Tabel) -> integer
-	{mengembalikan banyak elemen T yang berupa karakter huruf vocal } */
-int countVocal(Tabel T);
+// *********************** AKSESOR ***********************
+/* function infoTop (T:Stack) -> char 
+   {mengembalikan elemen paling atas stack} */
+char infoTop(Stack T);
 
-/*************************MUTATOR*************************/
-/* procedure addXTable (input/output T:Tabel, input x: character)
-	{I.S.: T terdefinisi, x terdefinisi }
-	{F.S.: isi T.wadah bertambah 1 elemen jika belum penuh}
-	{Proses: mengisi elemen T.wadah dengan nilai x}*/
-void addXTable(Tabel *T, char x);
+/* function top (T:Stack) -> integer 
+   {mengembalikan indeks elemen paling atas} */
+int top(Stack T);
 
-/* procedure addUniqueXTable (input/output T:Tabel, input x: character)
-	{I.S.: T terdefinisi, x terdefinisi }
-	{F.S.: isi T.wadah bertambah 1 elemen jika x unik dan tabel belum penuh}
-	{Proses: mengisi elemen T.wadah dengan nilai unik x}*/
-void addUniqueXTable(Tabel *T, char x);
+// *********************** MUTATOR ***********************
+/* procedure push (input/output T:Stack, input e:char) 
+   {I.S.: T terdefinisi, mungkin kosong/penuh}
+   {F.S.: e ditambahkan ke stack jika belum penuh} */
+void push(Stack *T, char *e);
 
-/* procedure delXTable (input/output T:Tabel, input x:character)
-	{I.S.: T terdefinisi, x terdefinisi}
-	{F.S.: isi T.wadah berkurang 1 elemen jika belum kosong}
-	{Proses: menghapus 1 elemen bernilai x, geser semua elemen sisa}*/
-void delXTable(Tabel *T, char x);
+/* procedure pop (input/output T:Stack, output e:char) 
+   {I.S.: T terdefinisi, mungkin kosong}
+   {F.S.: e berisi elemen teratas, stack berkurang satu elemen} */
+void pop(Stack *T, char *e);
 
-/* procedure delTable (input/output T:Tabel, input idx:integer)
-	{I.S.: T terdefinisi, idx antara 1...getSize(T)}
-	{F.S.: isi T.wadah berkurang 1 elemen jika belum kosong}
-	{Proses: menghapus 1 elemen pada posisi idx, geser semua elemen sisa}*/
-void delTable(Tabel *T, int idx);
-
-/* procedure delAllXTable (input/output T:Tabel, input x:character)
-	{I.S.: T terdefinisi}
-	{F.S.: isi T.wadah berkurang semua elemen bernilai X jika belum kosong}
-	{Proses: menghapus semua elemen bernilai X, geser elemen sisa}*/
-void delAllXTable(Tabel *T, char x);
-
-/*************************OPERASI BACA/TULIS*************************/
-/* procedure printTable (input T:Tabel)
-	{I.S.: T terdefinisi}
-	{F.S.: -}
-	{Proses: menampilkan semua elemen T ke layar} */
-void printTable(Tabel T);
-
-/* procedure viewTable (input T:Tabel)
-	{I.S.: T terdefinisi}
-	{F.S.: -}
-	{Proses: menampilkan elemen T yang terisi ke layar} */
-void viewTable(Tabel T);
-
-/* procedure populateTable (input/output T:Tabel, input N: integer)
-	{I.S.: T terdefinisi, N terdefinisi dalam rentang 1..10}
-	{F.S.: T.wadah terisi sebanyak N elemen }
-	{Proses: mengisi elemen T.wadah sebanyak N kali dari keyboard}
-	{Syarat: angka-angka masukan keyboard > 0 }*/
-void populateTable(Tabel *T, int N);
-
-/*************************OPERASI STATISTIK*************************/
-/*function Modus (T:Tabel ) -> integer 
-	{mengembalikan elemen pengisi T yang paling banyak muncul } */
-	/*asumsi: bila terdapat banyak yang sama maka yang diambil yang pertama*/
-int Modus(Tabel T);
-
-/*************************OPERASI RELASIONAL*************************/
-/* function IsEqualTable (T1:Tabel, T2: Table ) -> boolean 
-	{mengembalikan true jika T1 memiliki elemen dan urutan yang sama dengan T2 } */
-boolean isEqualTable(Tabel T1, Tabel T2);
-
-/*************************OPERASI LAINNYA*************************/
-/* function getInverseTable(T:Tabel) -> Tabel 
-	{mengembalikan tabel baru dengan isi elemen yang berkebalikan dengan tabel T } */
-Tabel getInverseTable(Tabel T);
-
-/* procedure inverseTable(input/output T:Tabel)
-	{I.S.: T terdefinisi}
-	{F.S.: elemen dalam T.wadah memiliki isi berkabalikan dengan isi tabel semula}
-	{Proses: membalik isi elemen pada tabel T}*/
-void inverseTable(Tabel *T);
-
-/*************************OPERASI PENGURUTAN*************************/
-/* procedure SortAsc ( input/output T:Tabel)
-	{I.S.: T terdefinisi}
-	{F.S.: elemen dalam T.wadah terurut dari huruf abjad awal ke akhir}
-	{Proses: mengurutkan elemen dalam T.wadah dari huruf abjad awal ke akhir}*/
-void sortAsc(Tabel *T);
-
-/* procedure SortDesc ( input/output T:Tabel)
-	{I.S.: T terdefinisi}
-	{F.S.: elemen dalam T.wadah terurut dari huruf abjad akhir ke awal}
-	{Proses: mengurutkan elemen dalam T.wadah dari huruf abjad akhir ke awal}*/
-void sortDesc(Tabel *T);
+// *********************** OPERASI BACA/TULIS ***********************
+/* procedure printStack (T:Stack) 
+   {I.S.: T terdefinisi}
+   {F.S.: isi stack ditampilkan ke layar} */
+void printStack(Stack T);
