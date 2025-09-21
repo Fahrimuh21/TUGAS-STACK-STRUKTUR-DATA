@@ -182,3 +182,15 @@ void redoCommand (Tstack *Undo, Tstack *Redo, char *Cmd){
     pop(Redo, Cmd);
     push(Undo, *Cmd);
 }
+
+/* procedure tampilkanStack (input Undo:Stack, Redo:Stack)
+   {I.S.: Undo dan Redo terdefinisi}
+   {F.S.: kondisi stack Undo & Redo ditampilkan ke layar}
+   {Proses: memanggil printStack untuk masing-masing stack}
+   {Contoh: Undo=['a','b'], Redo=['c'] → tampil di layar:
+            Isi Undo: [a | b]
+            Isi Redo: [c] } */
+void tampilkanStack(Tstack Undo, Tstack Redo) {
+    printStack(Undo);
+    printStack(Redo);
+}
