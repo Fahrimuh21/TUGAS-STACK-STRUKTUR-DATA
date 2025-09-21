@@ -166,18 +166,18 @@ void pushZuma(Tstack *T, char E)
     }
 }
 
-/* procedure addCommand (input/output Undo:Stack, Redo:Stack, input Cmd:string)
+/* procedure addCommand (input/output Undo:Stack, Redo:Stack, input Cmd:char)
    {I.S.: Undo & Redo terdefinisi, Cmd terdefinisi}
    {F.S.: Cmd masuk ke Undo (push), Redo dikosongkan}
-   {Proses: push Cmd ke Undo, initStack(Redo)}
-   {Contoh: Undo=['open'], Cmd="save" → Undo=['open','save'], Redo=[]} */
+   {Proses: push Cmd ke Undo, createStack(Redo)}
+   {Contoh: Undo=['a'], Cmd='b' → Undo=['a','b'], Redo=[]} */
 void addCommand(Tstack *Undo, Tstack *Redo, char Cmd)
 {
     push(Undo, Cmd);
     createStack(Redo);
 }
 
-/* procedure undoCommand (input/output Undo:Stack, Redo:Stack, output Cmd:string)
+/* procedure undoCommand (input/output Undo:Stack, Redo:Stack, output Cmd:char)
    {I.S.: Undo tidak kosong, Redo terdefinisi}
    {F.S.: elemen top Undo dipindah ke Redo, Cmd berisi elemen tersebut}
    {Proses: pop dari Undo → push ke Redo}
@@ -189,12 +189,12 @@ void undoCommand(Tstack *Undo, Tstack *Redo, char *Cmd)
         pop(Undo, Cmd);
         if (*Cmd != '#')
         {
-            push(Redo, *Cmd);
+            push(&Redo, *Cmd);
         }
     }
 }
 
-/* procedure redoCommand (input/output Undo:Stack, Redo:Stack, output Cmd:string)
+/* procedure redoCommand (input/output Undo:Stack, Redo:Stack, output Cmd:char)
    {I.S.: Redo tidak kosong, Undo terdefinisi}
    {F.S.: elemen top Redo dipindah ke Undo, Cmd berisi elemen tersebut}
    {Proses: pop dari Redo → push ke Undo}
@@ -212,7 +212,7 @@ void redoCommand(Tstack *Undo, Tstack *Redo, char *Cmd)
 }
 
 /* procedure tampilkanStack (input Undo:Stack, Redo:Stack)
-   {I.S.: Undo dan Redo terdefinisi}
+   {I.S.: Undo & Redo terdefinisi}
    {F.S.: kondisi stack Undo & Redo ditampilkan ke layar}
    {Proses: memanggil printStack untuk masing-masing stack}
    {Contoh: Undo=['a','b'], Redo=['c'] → tampil di layar:
