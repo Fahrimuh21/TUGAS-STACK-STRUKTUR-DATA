@@ -68,11 +68,6 @@ void printStack (Tstack T);
 	{setiap elemen dipisah tanda titik koma } */
 void viewStack (Tstack T);
 
-/* selanjutnya tugas algoritma palindrom dikerjakan di main */
-
-	
-/* kerjakan prosedur berikut bila tugas palindrom sudah sukses */
-
 /*procedure pushN ( input/output T:Tstack, input N: integer )
 	{I.S.: T,N terdefinisi}
 	{F.S.: infotop tetap, atau top=N }
@@ -91,5 +86,18 @@ void pushBabel1 (Tstack *T, char E);
 	{Proses: menumpuk top atau menghapus elemen top }
     {contoh: T=['A','B','C'], E='C' menjadi T=['A','B']}*/
 void pushZuma (Tstack *T, char E);
+
+/* function isValidKurung(kata:string) → boolean
+   {I.S.: kata terdefinisi}
+   {F.S.: Mengembalikan true jika seluruh tanda kurung di kata sesuai pasangan}
+   {Proses:
+      - Jika kurung buka → push ke stack
+      - Jika kurung tutup → pop dari stack lalu cek pasangannya
+      - Jika tidak cocok → return false
+      - Setelah semua karakter diproses, jika stack kosong → return true}
+   {Contoh:
+      kata = "{[(A+B)]}" → true
+      kata = "{[(A+B)]"  → false } */
+boolean isValidKurung(char *kata);
 
 #endif

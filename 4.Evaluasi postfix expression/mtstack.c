@@ -5,20 +5,18 @@
 /***********************************/
 
 #include <stdio.h>
-#include "tstack.c"
+#include <string.h>
+#include "tstack.h"
 /* include tstack+boolean */
 
 int main() 
-{	/* kamus main */
-	Tstack A;
+{	char expr[100];
 
-	
-	
-	/* algoritma */
-	//createStack( &A );
+    printf("Masukkan ekspresi postfix (pisahkan dengan spasi):\n");
+    scanf("%s", expr);   // baca input sampai ketemu newline (tanpa fgets)
 
-	
-	
-	
-	return 0;
+    float hasil = evaluatePostfix(expr);
+    printf("Hasil evaluasi = %.2f\n", hasil);
+
+    return 0;
 }

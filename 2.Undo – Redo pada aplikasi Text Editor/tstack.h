@@ -68,10 +68,6 @@ void printStack (Tstack T);
 	{setiap elemen dipisah tanda titik koma } */
 void viewStack (Tstack T);
 
-/* selanjutnya tugas algoritma palindrom dikerjakan di main */
-
-	
-/* kerjakan prosedur berikut bila tugas palindrom sudah sukses */
 
 /*procedure pushN ( input/output T:Tstack, input N: integer )
 	{I.S.: T,N terdefinisi}
@@ -112,4 +108,10 @@ void undoCommand (Tstack *Undo, Tstack *Redo, char *Cmd);
    {Proses: pop dari Redo → push ke Undo}
    {Contoh: Undo=['a','b'], Redo=['c'] → Undo=['a','b','c'], Redo=[]} */
 void redoCommand (Tstack *Undo, Tstack *Redo, char *Cmd);
+
+/* procedure tampilkanStack (input Undo:Stack, Redo:Stack)
+   {I.S.: Undo & Redo terdefinisi}
+   {F.S.: -}
+   {Proses: menampilkan isi kedua stack ke layar}*/
+void tampilkanStack (Tstack Undo, Tstack Redo);
 #endif

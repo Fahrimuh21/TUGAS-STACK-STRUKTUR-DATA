@@ -5,7 +5,7 @@
 /***********************************/
 
 #include <stdio.h>
-#include "tstack.c"
+#include "tstack.h"
 /* include tstack+boolean */
 
 int main() {

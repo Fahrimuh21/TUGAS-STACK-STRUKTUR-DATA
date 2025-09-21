@@ -6,16 +6,8 @@
 
 #include <stdio.h>
 #include "tstack.h"
-#include "boolean.h"
-/* include tstack+boolean */
+#include "boolean.h" 
 
-/* type Tstack = < wadah : array[1..10] of character,
-                   top   : integer > */
-typedef	struct { char wadah[11];
-                 int  top; 
-			   } Tstack;
-/*karakter kosong dilambangkan dengan '#'  */
-				 
 /*procedure createStack( output T: Tstack)
 	{I.S.: -}
 	{F.S.: T terdefinisi, semua nilai elemen T.wadah = '#' }
@@ -30,22 +22,11 @@ void createStack(Tstack *T)
     }
 }
 
-/*function top( T: Tstack) -> integer
-	{mengembalikan posisi puncak stack } */
-//int top (Tstack T);
-//dalam praktikum ini, fungsi dapat direalisasikan
-//menjadi macro dalam bahasa C.
-#define top(T) (T).top
-/*function infotop( T: Tstack) -> character
-	{mengembalikan nilai elemen top stack } */
-//char infotop (Tstack T);
-#define infotop(T) (T).wadah[(T).top]
-
 /*function isEmptyStack( T: Tstack) -> boolean
-	{mengembalikan True jika T kosong } */
+    {mengembalikan True jika T kosong } */
 boolean isEmptyStack(Tstack T){
-    return (T.top == 0);
-}
+    return (T.top == 0);   
+}          
 
 /*function isFullStack( T: Tstack) -> boolean
 	{mengembalikan True jika T penuh } */

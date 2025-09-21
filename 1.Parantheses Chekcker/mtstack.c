@@ -5,20 +5,25 @@
 /***********************************/
 
 #include <stdio.h>
-#include "tstack.c"
+#include <string.h>
+#include "tstack.h"
+#include "boolean.h"
+
 /* include tstack+boolean */
 
 int main() 
 {	/* kamus main */
-	Tstack A;
-
-	
-	
+	char prefix[100];
+	printf("masukan ekspresi: ");
+	scanf("%s \n", &prefix);
 	/* algoritma */
-	//createStack( &A );
+	 if (isValidKurung(prefix)) {
+        printf("Ekspresi VALID (kurung seimbang)\n");
+    } else {
+        printf("Ekspresi TIDAK VALID (kurung tidak seimbang)\n");
+    }
 
-	
-	
+
 	
 	return 0;
 }
