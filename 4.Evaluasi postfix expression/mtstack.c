@@ -18,8 +18,7 @@ int main()
 {	char expr[100];
 
     printf("Masukkan ekspresi postfix (pisahkan dengan spasi):\n");
-    scanf("%s", expr);   // baca input sampai ketemu newline (tanpa fgets)
-
+    scanf("%s", expr);  
     float hasil = evaluatePostfix(expr);
     printf("Hasil evaluasi = %.2f\n", hasil);
 
