@@ -220,33 +220,6 @@ void redoCommand(Tstack *Undo, Tstack *Redo, char *Cmd)
             Isi Redo: [c] } */
 void tampilkanStack(Tstack Undo, Tstack Redo)
 {
-    printf("Undo Stack: ");
-    if (!isEmptyStack(Undo))
-    {
-        printf("[");
-        for (int i = 1; i <= Undo.top; i++)
-        {
-            printf("%c", Undo.wadah[i]);
-            if (i < Undo.top)
-                printf("|");
-        }
-        printf("]\n");
-    }
-
-    printf("Redo Stack: ");
-    if (isEmptyStack(Redo))
-    {
-        printf("[kosong]\n");
-    }
-    else
-    {
-        printf("[");
-        for (int i = 1; i <= Redo.top; i++)
-        {
-            printf("%c", Redo.wadah[i]);
-            if (i < Redo.top)
-                printf("|");
-        }
-        printf("]\n");
-    }
+    printStack(Undo);
+    printStack(Redo);
 }

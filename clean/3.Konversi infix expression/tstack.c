@@ -183,31 +183,27 @@ void pushZuma(Tstack *T, char E)
     }
 }
 
-/* Helper function: Check if character is valid operand */
 boolean isOperand(char ch)
 {
     return (ch >= '0' && ch <= '9');
 }
 
-/* Helper function: Check if character is valid operator */
 boolean isOperator(char ch)
 {
     return (ch == '+' || ch == '-' || ch == '*' || ch == '/');
 }
 
-/* Helper function: Check if character should be ignored (whitespace, invalid) */
 boolean shouldIgnore(char ch)
 {
     return (ch == ' ' || ch == '\t' || ch == '\n' ||
             (!isOperand(ch) && !isOperator(ch) && ch != '(' && ch != ')'));
 }
 
-/* Helper function: Validate expression before processing */
 boolean validateExpression(char *infix)
 {
     int i = 0;
     int parenCount = 0;
-    boolean lastWasOperator = true; // Start as true to handle leading operators
+    boolean lastWasOperator = true;
     boolean hasOperand = false;
 
     while (infix[i] != '\0')
