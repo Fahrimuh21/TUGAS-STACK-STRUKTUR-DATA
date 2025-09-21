@@ -92,4 +92,27 @@ void pushBabel1 (Tstack *T, char E);
     {contoh: T=['A','B','C'], E='C' menjadi T=['A','B']}*/
 void pushZuma (Tstack *T, char E);
 
+/* function evaluatePostfix(postfix:string) → float
+   {I.S.: postfix terdefinisi, berisi operand (0–9) dan operator (+,-,*,/)}
+   {F.S.: Menghasilkan nilai hasil evaluasi ekspresi postfix}
+   {Proses:
+      - Baca token postfix satu per satu
+      - Jika token operand (angka) → push ke stack
+      - Jika token operator → pop 2 operand (b, a), hitung a op b, lalu push hasilnya kembali ke stack
+      - Setelah semua token selesai, elemen terakhir di stack adalah hasil akhir}
+   {Contoh:
+      postfix="9 3 4 * 8 + 4 / -" 
+      langkah:
+        push 9
+        push 3
+        push 4
+        * → pop(4,3) → 3*4=12 → push 12
+        push 8
+        + → pop(8,12) → 12+8=20 → push 20
+        push 4
+        / → pop(4,20) → 20/4=5 → push 5
+        - → pop(5,9) → 9-5=4 → push 4
+      hasil = 4 } */
+float evaluatePostfix(char *postfix);
+
 #endif

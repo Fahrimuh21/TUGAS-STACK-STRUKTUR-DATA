@@ -92,4 +92,24 @@ void pushBabel1 (Tstack *T, char E);
     {contoh: T=['A','B','C'], E='C' menjadi T=['A','B']}*/
 void pushZuma (Tstack *T, char E);
 
+/* procedure addCommand (input/output Undo:Stack, Redo:Stack, input Cmd:string)
+   {I.S.: Undo & Redo terdefinisi, Cmd terdefinisi}
+   {F.S.: Cmd masuk ke Undo (push), Redo dikosongkan}
+   {Proses: push Cmd ke Undo, initStack(Redo)}
+   {Contoh: Undo=['open'], Cmd="save" → Undo=['open','save'], Redo=[]} */
+void addCommand (Tstack *Undo, Tstack *Redo, char Cmd);
+
+/* procedure undoCommand (input/output Undo:Stack, Redo:Stack, output Cmd:string)
+   {I.S.: Undo tidak kosong, Redo terdefinisi}
+   {F.S.: elemen top Undo dipindah ke Redo, Cmd berisi elemen tersebut}
+   {Proses: pop dari Undo → push ke Redo}
+   {Contoh: Undo=['a','b','c'], Redo=[] → Undo=['a','b'], Redo=['c']} */
+void undoCommand (Tstack *Undo, Tstack *Redo, char *Cmd);
+
+/* procedure redoCommand (input/output Undo:Stack, Redo:Stack, output Cmd:string)
+   {I.S.: Redo tidak kosong, Undo terdefinisi}
+   {F.S.: elemen top Redo dipindah ke Undo, Cmd berisi elemen tersebut}
+   {Proses: pop dari Redo → push ke Undo}
+   {Contoh: Undo=['a','b'], Redo=['c'] → Undo=['a','b','c'], Redo=[]} */
+void redoCommand (Tstack *Undo, Tstack *Redo, char *Cmd);
 #endif

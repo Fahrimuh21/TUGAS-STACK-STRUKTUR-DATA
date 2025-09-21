@@ -92,4 +92,27 @@ void pushBabel1 (Tstack *T, char E);
     {contoh: T=['A','B','C'], E='C' menjadi T=['A','B']}*/
 void pushZuma (Tstack *T, char E);
 
+/* function precedence(op:char) → integer
+   {Mengembalikan tingkat prioritas operator}
+   {Prioritas: * / = 2, + - = 1, lainnya = 0}
+   {Contoh: op='*' → return 2} */
+int precedence(char op);
+
+/* function infixToPostfix(infix:string) → string
+   {I.S.: infix terdefinisi, berisi operand (0–9), operator (+,-,*,/), dan tanda kurung}
+   {F.S.: Menghasilkan string postfix sesuai aturan prioritas operator}
+   {Proses:
+      - Jika token operand → tambahkan langsung ke postfix
+      - Jika token '(' → push ke stack
+      - Jika token ')' → pop semua operator hingga '('
+      - Jika token operator:
+          • Pop operator di stack selama precedence(top) ≥ precedence(current)
+          • Push operator sekarang ke stack
+      - Setelah semua token diproses → pop semua sisa operator ke postfix}
+   {Contoh:
+      infix="3+(4*3)/4" → postfix="3 4 3 * 4 / +"
+      infix="3*(4+5)/2" → postfix="3 4 5 + * 2 /"
+      infix="3+(4*5)-2" → postfix="3 4 5 * + 2 -"} */
+char* infixToPostfix(char *infix);
+
 #endif
