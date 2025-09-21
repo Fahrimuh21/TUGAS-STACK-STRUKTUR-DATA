@@ -153,71 +153,6 @@ void pushZuma (Tstack *T, char E){
     }
 }
 
-/* function isValidKurung(kata:string) → boolean
-   {I.S.: kata terdefinisi}
-   {F.S.: Mengembalikan true jika seluruh tanda kurung di kata sesuai pasangan}
-   {Proses:
-      - Jika kurung buka → push ke stack
-      - Jika kurung tutup → pop dari stack lalu cek pasangannya
-      - Jika tidak cocok → return false
-      - Setelah semua karakter diproses, jika stack kosong → return true}
-   {Contoh:
-      kata = "{[(A+B)]}" → true
-      kata = "{[(A+B)]"  → false } */
-boolean isValidKurung(char *kata) {
-    Tstack S;
-    createStack(&S);
-    char ch, topChar;
-    int i = 0;
-    while ((ch = kata[i]) != '\0') {
-        if (ch == '(' || ch == '{' || ch == '[') {
-            push(&S, ch);
-        } else if (ch == ')' || ch == '}' || ch == ']') {
-            if (isEmptyStack(S)) {
-                return false;
-            }
-            pop(&S, &topChar);
-            if ((ch == ')' && topChar != '(') ||
-                (ch == '}' && topChar != '{') ||
-                (ch == ']' && topChar != '[')) {
-                return false;
-            }
-        }
-        i++;
-    }
-    return isEmptyStack(S);
-}
-
-/* procedure addCommand (input/output Undo:Stack, Redo:Stack, input Cmd:string)
-   {I.S.: Undo & Redo terdefinisi, Cmd terdefinisi}
-   {F.S.: Cmd masuk ke Undo (push), Redo dikosongkan}
-   {Proses: push Cmd ke Undo, initStack(Redo)}
-   {Contoh: Undo=['open'], Cmd="save" → Undo=['open','save'], Redo=[]} */
-void addCommand (Tstack *Undo, Tstack *Redo, char Cmd){
-    push(Undo, Cmd);
-    createStack(Redo);
-}
-
-/* procedure undoCommand (input/output Undo:Stack, Redo:Stack, output Cmd:string)
-   {I.S.: Undo tidak kosong, Redo terdefinisi}
-   {F.S.: elemen top Undo dipindah ke Redo, Cmd berisi elemen tersebut}
-   {Proses: pop dari Undo → push ke Redo}
-   {Contoh: Undo=['a','b','c'], Redo=[] → Undo=['a','b'], Redo=['c']} */
-void undoCommand (Tstack *Undo, Tstack *Redo, char *Cmd){
-    pop(Undo, Cmd);
-    push(Redo, *Cmd);
-}
-
-/* procedure redoCommand (input/output Undo:Stack, Redo:Stack, output Cmd:string)
-   {I.S.: Redo tidak kosong, Undo terdefinisi}
-   {F.S.: elemen top Redo dipindah ke Undo, Cmd berisi elemen tersebut}
-   {Proses: pop dari Redo → push ke Undo}
-   {Contoh: Undo=['a','b'], Redo=['c'] → Undo=['a','b','c'], Redo=[]} */
-void redoCommand (Tstack *Undo, Tstack *Redo, char *Cmd){
-    pop(Redo, Cmd);
-    push(Undo, *Cmd);
-}
-
 /* function precedence(op:char) → integer
    {Mengembalikan tingkat prioritas operator}
    {Prioritas: * / = 2, + - = 1, lainnya = 0}
@@ -290,4 +225,3 @@ char* infixToPostfix(char *infix){
     postfix[j] = '\0';
     return postfix;
 }
-
