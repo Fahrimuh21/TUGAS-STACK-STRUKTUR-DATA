@@ -1,7 +1,12 @@
 /* Program   : tstack.c */
 /* Deskripsi : file BODY modul stack karakter */
-/* NIM/Nama  : */
-/* Tanggal   : */
+/* NIM/Nama  : 
+Muhammad Akmal Fazli Riyadi 24060124130123
+Muhammad Fikri 24060124130069
+Khanza Qaila 24060124120011
+Nayla Husna 24060124140158
+Muhammad Fahri 24060124120037*/
+/* Tanggal   : 21 September 2025*/
 /***********************************/
 
 #include <stdio.h>
@@ -197,22 +202,6 @@ int precedence(char op)
         return 0;
     }
 }
-
-/* function infixToPostfix(infix:string) → string
-   {I.S.: infix terdefinisi, berisi operand (0–9), operator (+,-,*,/), dan tanda kurung}
-   {F.S.: Menghasilkan string postfix sesuai aturan prioritas operator}
-   {Proses:
-      - Jika token operand → tambahkan langsung ke postfix
-      - Jika token '(' → push ke stack
-      - Jika token ')' → pop semua operator hingga '('
-      - Jika token operator:
-          • Pop operator di stack selama precedence(top) ≥ precedence(current)
-          • Push operator sekarang ke stack
-      - Setelah semua token diproses → pop semua sisa operator ke postfix}
-   {Contoh:
-      infix="3+(4*3)/4" → postfix="3 4 3 * 4 / +"
-      infix="3*(4+5)/2" → postfix="3 4 5 + * 2 /"
-      infix="3+(4*5)-2" → postfix="3 4 5 * + 2 -"} */
 
 /* function infixToPostfix(infix:string) → string
    {I.S.: infix terdefinisi, berisi operand (0–9), operator (+,-,*,/), dan tanda kurung}
